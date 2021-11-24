@@ -1,0 +1,11 @@
+@import "reset";
+@import "vars";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: $black;
+}
