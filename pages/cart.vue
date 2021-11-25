@@ -14,7 +14,7 @@
               <span class="quantity">{{ item.quantity }}</span>
               <button class="quantityControl cardControl" @click="increase(item.id)">+</button>
             </div>
-            <span class="item-price">${{ item.price * item.quantity }}</span>
+            <span class="item-price">${{ (item.price * item.quantity).toFixed(2) }}</span>
 
             <button class="delete">X</button>
           </li>
@@ -37,7 +37,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import Modal from '~/components/Modal'
+import Modal from '~/components/Modal.vue'
+import { CartItem, CartItemExtended } from '~/assets/ts/interfaces'
 
 @Component({
   components: {
@@ -47,16 +48,16 @@ import Modal from '~/components/Modal'
 export default class Cart extends Vue {
   isModalVisible: boolean = false
 
-  get getItems () {
+  get getItems (): CartItem {
     return this.$store.getters['cart/getCart']
   }
 
-  get total () {
+  get total (): string {
     let sum: number = 0
-    this.$store.getters['cart/getCart'].forEach((el: any) => {
+    this.$store.getters['cart/getCart'].forEach((el: CartItemExtended) => {
       sum += el.quantity * el.price
     })
-    return sum
+    return sum.toFixed(2)
   }
 
   increase (id: number) {

@@ -25,7 +25,7 @@ export default class defaultLayout extends Vue {}
 <style lang="scss">
   .container {
     font-family: 'Open Sans',  Sans-Serif;
-    width: 700px;
+    width: 1200px;
     margin: $header-height+40px auto 0;
   }
 </style>
