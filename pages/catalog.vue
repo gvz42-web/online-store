@@ -13,18 +13,18 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import Card from '~/components/Card.vue'
+import { Product } from '~/assets/ts/interfaces'
 
 @Component({
   components: {
     Card
   },
-  async fetch ({ store } : any) {
+  async fetch ({ store }) {
     await store.dispatch('product/fetchProducts')
   }
 })
 export default class Catalog extends Vue {
-
-  get allProducts () {
+  get allProducts () : Product[] {
     return this.$store.getters['product/getProducts']
   }
 }
@@ -37,7 +37,8 @@ export default class Catalog extends Vue {
 }
 
 .products-list {
-  width: 100%;
+  width: 700px;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
 }

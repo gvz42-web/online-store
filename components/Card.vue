@@ -17,6 +17,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
+import { CartItem } from '~/assets/ts/interfaces'
+
+interface CheckStatus {
+  () : CartItem
+}
 
 const CardProps = Vue.extend({
   props: {
@@ -30,7 +35,7 @@ export default class Card extends CardProps {
     this.$store.dispatch('cart/addToCart', id)
   }
 
-  get fromCart () {
+  get fromCart (): CheckStatus {
     return this.$store.getters['cart/checkStatus']
   }
 

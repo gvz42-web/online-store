@@ -13,8 +13,8 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 
 @Component
-export default class defaultLayout extends Vue {
-  close() {
+export default class Modal extends Vue {
+  close () {
     this.$emit('closeModal')
   }
 }
@@ -52,6 +52,7 @@ export default class defaultLayout extends Vue {
       cursor: pointer;
       font-size: 16px;
     }
+
     .text {
       position: absolute;
       left: 0;
