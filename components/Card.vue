@@ -3,7 +3,8 @@
     <img :src="item.image" alt="" class="product-img">
     <span class="product-title">{{ item.title }}</span>
     <span class="product-price">{{ item.price }}</span>
-    <button class="add-to-cart" @click="addToCart(item.id)">Добавить в коризну</button>
+    <div v-if="fromCart(item.id)">Уже добавлено {{ fromCart(item.id) }}</div>
+    <button v-else class="add-to-cart" @click="addToCart(item.id)">Добавить в коризну</button>
   </div>
 </template>
 
@@ -20,8 +21,15 @@ const CardProps = Vue.extend({
 @Component
 export default class Card extends CardProps {
 
+  inCart: boolean = false
+  quantity: number = 0
+
   addToCart (id: number) {
     this.$store.dispatch('cart/addToCart', id)
+  }
+
+  get fromCart () {
+    return this.$store.getters['cart/checkStatus']
   }
 }
 </script>

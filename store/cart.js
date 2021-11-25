@@ -24,7 +24,6 @@ export const actions = {
 export const getters = {
   getCart (state, getters, rootState) {
     return state.cart.map(({ id, quantity }) => {
-      console.log(rootState)
       const product = rootState.product.products.find(product => product.id === id)
       return {
         id: product.id,
@@ -34,5 +33,12 @@ export const getters = {
         quantity
       }
     })
+  },
+
+  checkStatus (state) {
+    return function (id) {
+      const item = state.cart.find(i => i.id === id)
+      return item
+    }
   }
 }
