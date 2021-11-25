@@ -10,6 +10,24 @@ export const mutations = {
     })
   },
 
+  increase (state, id) {
+    const index = state.cart.findIndex(x => x.id === id)
+    state.cart[index].quantity += 1
+  },
+
+  decrease (state, id) {
+    const index = state.cart.findIndex(x => x.id === id)
+    state.cart[index].quantity--
+    if (state.cart[index].quantity === 0) {
+      state.cart.splice(index, 1)
+    }
+  },
+
+  deleteItem (state, id) {
+    const index = state.cart.findIndex(x => x.id === id)
+    state.cart.splice(index, 1)
+  },
+
   countItem (state, id, count) {
     state.cart[id] = count
   }
