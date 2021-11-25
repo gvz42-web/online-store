@@ -1,9 +1,9 @@
 <template>
   <div class="product-card">
-    <img src="https://via.placeholder.com/150" alt="" class="product-img">
-    <span class="product-title">Товар</span>
-    <span class="product-price">$12</span>
-    <button class="add-to-cart">Добавить в коризну</button>
+    <img :src="item.image" alt="" class="product-img">
+    <span class="product-title">{{ item.title }}</span>
+    <span class="product-price">{{ item.price }}</span>
+    <button class="add-to-cart" @click="addToCart(item.id)">Добавить в коризну</button>
   </div>
 </template>
 
@@ -11,8 +11,19 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
+const CardProps = Vue.extend({
+  props: {
+    item: Object
+  }
+})
+
 @Component
-export default class Card extends Vue {}
+export default class Card extends CardProps {
+
+  addToCart (id: number) {
+    this.$store.dispatch('cart/addToCart', id)
+  }
+}
 </script>
 
 <style lang="scss" scoped>

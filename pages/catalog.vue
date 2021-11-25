@@ -2,7 +2,7 @@
   <div>
     <h2 class="page-title">Каталог</h2>
     <div class="products-list">
-      <Card v-for="card of 5" :key="card"/>
+      <Card v-for="product of allProducts" :key="product.id" v-bind:item="product"/>
     </div>
   </div>
 </template>
@@ -17,7 +17,15 @@ import Card from '~/components/Card.vue'
     Card
   }
 })
-export default class Catalog extends Vue {}
+export default class Catalog extends Vue {
+  get allProducts () {
+    return this.$store.getters['product/getProducts']
+  }
+
+  mounted () {
+    this.$store.dispatch('product/fetchProducts')
+  }
+}
 </script>
 
 <style lang="scss">
