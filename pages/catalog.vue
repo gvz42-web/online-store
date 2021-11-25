@@ -1,8 +1,10 @@
 <template>
   <div>
-    <h2 class="page-title">Каталог</h2>
+    <h2 class="page-title">
+      Каталог
+    </h2>
     <div class="products-list">
-      <Card v-for="product of allProducts" :key="product.id" v-bind:item="product"/>
+      <Card v-for="product of allProducts" :key="product.id" :item="product" />
     </div>
   </div>
 </template>
@@ -15,15 +17,15 @@ import Card from '~/components/Card.vue'
 @Component({
   components: {
     Card
+  },
+  async fetch ({ store } : any) {
+    await store.dispatch('product/fetchProducts')
   }
 })
 export default class Catalog extends Vue {
+
   get allProducts () {
     return this.$store.getters['product/getProducts']
-  }
-
-  mounted () {
-    this.$store.dispatch('product/fetchProducts')
   }
 }
 </script>
@@ -37,9 +39,7 @@ export default class Catalog extends Vue {
 .products-list {
   width: 700px;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
-  flex-grow: 1;
   margin: 0 auto;
 }
 </style>
