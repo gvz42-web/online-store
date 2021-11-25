@@ -37,9 +37,8 @@ export default class Catalog extends Vue {
 }
 
 .products-list {
-  width: 700px;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
 }
 </style>

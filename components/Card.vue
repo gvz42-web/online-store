@@ -4,10 +4,10 @@
       <img :src="item.image" alt="" >
     </div>
     <span class="product-title">{{ item.title }}</span>
-    <span class="product-price">{{ item.price }}</span>
+    <span class="product-price">${{ item.price }}</span>
     <div v-if="fromCart(item.id)" class="controlButtons">
       <button class="quantityControl cardControl" @click="decrease(item.id)">-</button>
-      <span class="quantity" @click="increase(item.id)">{{ fromCart(item.id).quantity }}</span>
+      <span class="quantity">{{ fromCart(item.id).quantity }}</span>
       <button class="quantityControl cardControl" @click="increase(item.id)">+</button>
     </div>
     <button v-else class="add-to-cart" @click="addToCart(item.id)">Добавить в коризну</button>
