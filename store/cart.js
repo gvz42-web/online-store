@@ -28,8 +28,12 @@ export const mutations = {
     state.cart.splice(index, 1)
   },
 
-  countItem (state, id, count) {
-    state.cart[id] = count
+  updateCart (state, cart) {
+    state.cart = cart || []
+  },
+
+  clearCart (state) {
+    state.cart = []
   }
 }
 
@@ -40,7 +44,7 @@ export const actions = {
 }
 
 export const getters = {
-  getCart (state, getters, rootState) {
+  getCart (state, _, rootState) {
     return state.cart.map(({ id, quantity }) => {
       const product = rootState.product.products.find(product => product.id === id)
       return {
