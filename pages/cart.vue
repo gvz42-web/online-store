@@ -49,6 +49,9 @@ export default class Cart extends Vue {
   isModalVisible: boolean = false
 
   get getItems (): CartItem {
+    if (this.$store.getters['product/getProducts'].length === 0) {
+      this.$store.dispatch('product/fetchProducts')
+    }
     return this.$store.getters['cart/getCart']
   }
 
