@@ -45,16 +45,19 @@ export const actions = {
 
 export const getters = {
   getCart (state, _, rootState) {
-    return state.cart.map(({ id, quantity }) => {
-      const product = rootState.product.products.find(product => product.id === id)
-      return {
-        id: product.id,
-        image: product.image,
-        title: product.title,
-        price: product.price,
-        quantity
-      }
-    })
+    if (rootState.product.products.length !== 0) {
+      return state.cart.map(({ id, quantity }) => {
+        const product = rootState.product.products.find(product => product.id === id)
+        return {
+          id: product.id,
+          image: product.image,
+          title: product.title,
+          price: product.price,
+          quantity
+        }
+      })
+    }
+    return []
   },
 
   checkStatus (state) {
