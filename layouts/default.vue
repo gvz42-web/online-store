@@ -19,7 +19,14 @@ import Header from '~/components/Header.vue'
   }
 })
 
-export default class defaultLayout extends Vue {}
+export default class defaultLayout extends Vue {
+  mounted () {
+    this.$store.commit('cart/updateCart', JSON.parse(localStorage.getItem('cart') || 'null'))
+    this.$store.subscribe((_, state) => {
+      localStorage.setItem('cart', JSON.stringify(state.cart.cart))
+    })
+  }
+}
 </script>
 
 <style lang="scss">

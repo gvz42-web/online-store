@@ -16,7 +16,7 @@
             </div>
             <span class="item-price">${{ (item.price * item.quantity).toFixed(2) }}</span>
 
-            <button class="delete">X</button>
+            <button class="delete" @click="deleteFromCart(item.id)">X</button>
           </li>
         </ul>
       </div>
@@ -77,6 +77,7 @@ export default class Cart extends Vue {
   }
 
   openModal () {
+    this.$store.commit('cart/clearCart')
     this.isModalVisible = true
   }
 }
